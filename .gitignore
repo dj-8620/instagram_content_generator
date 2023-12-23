@@ -2,3 +2,13 @@
 /config/config.py
 /config/config.pyc
 /src/__pycache__/
+/src/*.pyc
+../config/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+__pycache__/
+
