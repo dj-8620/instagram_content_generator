@@ -1,9 +1,6 @@
 import os
 import sys
 from marshmallow import ValidationError
-import requests
-import json
-from article import Article
 from api_util import make_http_request
 from loguru import logger
 from article_schema import ArticleSchema
@@ -32,9 +29,11 @@ def create_article_list(json_data):
     article_schema = ArticleSchema(many=True)  # 'many=True' allows deserializing multiple objects
     try:
         # Load JSON data into Article objects
-        return article_schema.load(json_data['articles'])
+        return article_schema.load(json_data['articles'], partial=True)
     except ValidationError as err:
         # Handle validation errors, e.g., print them or log them
         print(err.messages)
         return []
     
+def get_desc_of_articles(article_list):
+    return [article.description for article in article_list]

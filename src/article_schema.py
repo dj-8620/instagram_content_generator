@@ -3,22 +3,22 @@ from article import Article  # Assuming you have an article.py for the Article c
 from source import Source
 
 class SourceSchema(Schema):
-    id = fields.Str()
-    name = fields.Str()
+    id = fields.Str(allow_none=True)
+    name = fields.Str(allow_none=True)
     
     @post_load
     def make_source(self, data, **kwargs):
         return Source(**data)
 
 class ArticleSchema(Schema):
-    source = fields.Nested(SourceSchema)
-    author = fields.Str()
-    title = fields.Str()
-    description = fields.Str()
-    url = fields.Url()
-    urlToImage = fields.Url()
-    publishedAt = fields.DateTime()
-    content = fields.Str()
+    source = fields.Nested(SourceSchema, allow_none=True)
+    author = fields.Str(allow_none=True)
+    title = fields.Str(allow_none=True)
+    description = fields.Str(allow_none=True)
+    url = fields.Url(allow_none=True)
+    urlToImage = fields.Url(allow_none=True)
+    publishedAt = fields.DateTime(allow_none=True)
+    content = fields.Str(allow_none=True)
 
     @post_load
     def make_article(self, data, **kwargs):
